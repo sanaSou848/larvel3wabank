@@ -19,11 +19,14 @@
     return "test reussi";
 });*/
 
-Route::get('/','PagesController@welcome');
+Route::get('/','PagesController@welcome')->name('welcome');
 
 
 
-Route::get('/about','PagesController@about');
+Route::get('/about','PagesController@about')->name('about');
 
 
-Route::get('/services','PagesController@services');
+Route::get('/services','PagesController@services')->name('services');
+
+
+Route::resource('client','ClientController');

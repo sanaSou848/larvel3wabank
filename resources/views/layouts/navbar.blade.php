@@ -6,13 +6,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="{{route('welcome')}}">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('client.index')}}">client</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="{{route('about')}}">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/services">Services</a>
+        <a class="nav-link" href="{{route('services')}}">Services</a>
       </li>
     </ul>
   </div>
