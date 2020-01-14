@@ -1,5 +1,13 @@
 @extends('layouts/app')
 @section('contenu')
+
+
+@if (session('message'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('message') }}
+        </div>
+@endif
 <h2>Contact Us</h2>
     <form action="{{route('contactMessage')}}" method="post">
   @csrf

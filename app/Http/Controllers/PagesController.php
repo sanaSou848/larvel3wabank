@@ -41,7 +41,7 @@ class PagesController extends Controller
             'mycomm' =>'required|max:250'
 
         ]);//bech nabedh mail to w bech nesta3em class 
-        Mail::to('benabidsana@gmail.com')->send(new ContactMail());
-        return redirect()->route('contact');
+        Mail::to($data['email'])->send(new ContactMail($data));
+        return redirect()->route('contact')->with('message','votre mail a ete envoyer');
     }
 }
