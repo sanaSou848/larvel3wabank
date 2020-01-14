@@ -40,6 +40,14 @@
     @enderror
   </div>
 
+  <div class="form-group">
+    <label for="image">Telephone</label>
+    <input type="file" class="form-control" id="image" name="image" value="{{ old('image') ?? $client->image}}">
+    @error('image')
+    <p class="text-danger">{{$message}}</p>
+    @enderror
+  </div>
+
 
 
 

@@ -1,4 +1,4 @@
-@extends('layouts/myapp')
+@extends('layouts/app')
 @section('contenu')
     <div class="jumbotron">
         <h1> {{$titre}} </h1>

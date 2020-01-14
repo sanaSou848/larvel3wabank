@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('adresse');
             $table->bigInteger('tel');
             $table->timestamps();
+            $table->string('image')->default('uplodas/sample.jpg');
         });
     }
 

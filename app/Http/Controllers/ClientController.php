@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +51,8 @@ class ClientController extends Controller
 
        $client = Client::create($data);
        //dd($client);
+       $this->uplodeImage($client);
        return redirect()->route('client.show', $client)->with('successNewClient', 'client ajouté avec succés');
-
-
-
     }
 
     /**
@@ -60,6 +64,8 @@ class ClientController extends Controller
     public function show(Client $client)
     {
         //
+        /*$comptes = $client->comptes;
+        return $comptes;*/
         return view('client.show')->with('client',$client);
     }
 
@@ -86,6 +92,7 @@ class ClientController extends Controller
     {
         $data = $this->validate($request,$this->validationRules());
         $client->update($data);
+        $this->uplodeImage($client);
         return redirect()->route('client.show', $client)->with('successNewClient', 'client modifié avec succés');
 
     }
@@ -99,14 +106,27 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+
+        $client->delete();
+        return redirect()->route('client.index')->with('successDelete','Client supprmier avec succés');
     }
 
     private function validationRules()
     {
         return['nom' =>'required|max:50|min:2',
-       'prenom'  =>'required|max:50|min:2',
+        'prenom'  =>'required|max:50|min:2',
         'dateNaissance'  =>'required|date' ,
         'adresse' =>'required|max:70|min:10',
-        'tel' =>'required|digits:8'];
+        'tel' =>'required|digits:8',
+        'image'=>'sometimes|file|image'];
+    }
+
+
+    private function uplodeImage($client)
+    {
+        if(request()->has('image'))
+        {
+            $client->update(['image' =>request()->image->store('uplodas','public')]);
+        }
     }
 }

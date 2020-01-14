@@ -1,4 +1,4 @@
-@extends('layouts/myapp')
+@extends('layouts/app')
 @section('contenu')
 
 @if (session('successNewClient'))
@@ -9,13 +9,15 @@
 @endif
 
 
+
+
+
     <div class="title m-b-md">
     	
     	<ul class="list-group">
     		
     		<li class="list-group-item">
     			le nom de client est:{{$client->nom}} {{$client->prenom}}
-    			
     		</li>
 
             <li class="list-group-item">
@@ -30,6 +32,13 @@
                tel {{$client->tel}}
                 
             </li>
+
+
+
+            <li class="list-group-item">
+               <img src="{{asset('storage/'.$client->image)}}">
+                
+            </li>
     		
     	</ul>
     	  </div>
@@ -39,6 +48,11 @@
                   Editer
               </a>
           </div>
+          <form action="{{route('client.destroy',['client'=>$client->id])}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+          </form>
 
 
 

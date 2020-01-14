@@ -20,10 +20,10 @@ class CreateComptesTable extends Migration
             $table->unsignedBigInteger('rib');//11
             $table->unsignedTinyInteger('cle_rib');//2
             $table->unsignedBigInteger('titulaire');
-            $table->foreign('titulaire')->references('id')->on('clients');
-            $table->double('solde')->default('TND');
+            $table->double('solde')->default(10);
             $table->enum('devise',['TND','EUR','USD'])->default('TND');
             $table->timestamps();
+            $table->foreign('titulaire')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
